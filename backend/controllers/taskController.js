@@ -10,9 +10,9 @@ const getTasks = async (req, res) => {
 };
 
 const addTask = async (req, res) => {
-    const { title, description, deadline } = req.body;
+    const { name, category, location, value, comment } = req.body;
     try {
-        const task = await Task.create({ userId: req.user.id, title, description, deadline });
+        const task = await Task.create({ userId: req.user.id, name, category, location, value, comment });
         res.status(201).json(task);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -20,17 +20,18 @@ const addTask = async (req, res) => {
 };
 
 const updateTask = async (req, res) => {
-    const { title, description, completed, deadline } = req.body;
+    const { name, category, location, value, comment } = req.body;
     try {
         const task = await Task.findById(req.params.id);
         if (!task) return res.status(404).json({ message: 'Task not found' });
 
-        task.title = title || task.title;
-        task.description = description || task.description;
-        task.completed = completed || task.completed;
-        task.deadline = deadline || task.deadline;
+        task.name = name || task.name;
+        task.category = category || task.category;
+        task.location = location || task.location;
+        task.value = value || task.value;
+        task.comment = comment || task.comment;
 
-        const updateTask = await task.save();
+        const updatedTask = await task.save();
         res.json(updatedTask);
     } catch (error) {
         res.status(500).json({ message: error.message });
