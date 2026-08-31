@@ -12,15 +12,15 @@ const Navbar = () => {
 
   return (
     <nav className="bg-teal-600 text-white p-4 flex justify-between items-center">
-      <Link to="/" className="text-2xl text-orange-400 font-bold">HomeVault</Link>
+      <h1 className="text-2xl text-orange-400 font-bold">HomeVault</h1>
       <div>
         {user ? (
           <>
-            <Link to="/tasks" className="mr-4">Tasks</Link>
+            <Link to="/tasks" className="mr-4">Inventory</Link>
             <Link to="/profile" className="mr-4">Profile</Link>
             <button
               onClick={handleLogout}
-              className="bg-red-500 px-4 py-2 rounded hover:bg-red-700"
+              className="bg-orange-500 px-4 py-2 rounded hover:bg-red-700"
             >
               Logout
             </button>
