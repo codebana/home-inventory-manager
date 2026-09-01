@@ -37,7 +37,7 @@ const TaskForm = ({ tasks, setTasks, editingTask, setEditingTask }) => {
       setEditingTask(null);
       setFormData({ name: '', category: '', location: '', value: '', comment: '' });
     } catch (error) { console.error(error.response?.data || error.message);
-      alert('Failed to save task.');
+      alert('Failed to add task. * fields are required.');
     }
   };
 
@@ -46,21 +46,21 @@ const TaskForm = ({ tasks, setTasks, editingTask, setEditingTask }) => {
       <h1 className="text-2xl font-bold mb-4">{editingTask ? 'Edit Item' : 'Add Item'}</h1>
       <input
         type="text"
-        placeholder="Name"
+        placeholder="Name*"
         value={formData.name}
         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
       />
       <input
         type="text"
-        placeholder="Category"
+        placeholder="Category*"
         value={formData.category}
         onChange={(e) => setFormData({ ...formData, category: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
       />
       <input
         type="text"
-        placeholder="Location"
+        placeholder="Location*"
         value={formData.location}
         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
