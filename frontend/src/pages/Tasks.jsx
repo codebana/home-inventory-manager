@@ -32,6 +32,7 @@ const Tasks = () => {
         editingTask={editingTask}
         setEditingTask={setEditingTask}
       />
+      <h1 className="text-2xl mb-4 text-orange-400 font-bold">My Inventory</h1>
       <TaskList tasks={tasks} setTasks={setTasks} setEditingTask={setEditingTask} />
     </div>
   );

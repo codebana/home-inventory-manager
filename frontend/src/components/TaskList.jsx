@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import axiosInstance from '../axiosConfig';
 
 const TaskList = ({ tasks, setTasks, setEditingTask }) => {
   const { user } = useAuth();
+  const [deletingItem, setDeletingItem] = useState(null);
 
   const handleDelete = async (taskId) => {
     try {
@@ -38,7 +40,7 @@ const TaskList = ({ tasks, setTasks, setEditingTask }) => {
               Edit
             </button>
             <button
-              onClick={() => handleDelete(task._id)}
+              onClick={() => setDeletingItem(task._id)}
               className="bg-red-500 text-white px-4 py-2 rounded"
             >
               Delete
@@ -46,6 +48,23 @@ const TaskList = ({ tasks, setTasks, setEditingTask }) => {
           </div>
         </div>
       ))}
+      {deletingItem && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-teal-600 p-6 rounded">
+            <p>Do you want to delete this item?</p>
+            <button onClick={() => setDeletingItem(null)}
+             className="bg-white px-4 py-2 rounded mt-4 mr-2"
+            >
+              Cancel
+            </button>
+            <button onClick={() => { handleDelete(deletingItem); setDeletingItem(null); }}
+              className="bg-red-500 px-4 py-2 rounded mt-4"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
