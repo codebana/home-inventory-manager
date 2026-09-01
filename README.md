@@ -1,4 +1,5 @@
 **HOMEVAULT - Home Inventory Manager**
+
 HomeVault is a web-based home inventory management application that allows users to securely manage household inventory items. The application supports different user roles with different levels of access to the system.
 
 ---
